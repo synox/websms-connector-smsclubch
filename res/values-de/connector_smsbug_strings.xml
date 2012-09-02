@@ -17,6 +17,6 @@
 		not, see <http://www.gnu.org/licenses/>.
 	-->
 <resources>
-	<string name="enable_smsbug">Aktiviere smsBug</string>
-	<string name="settings_smsbug">Einstellungen - smsBug</string>
+	<string name="enable_smsclub">Aktiviere sms-club.ch</string>
+	<string name="settings_smsclub">Einstellungen - sms-club.ch</string>
 </resources>

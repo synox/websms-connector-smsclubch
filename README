@@ -1,4 +1,4 @@
-This is the implementation for smsclub
+This the sms-club.ch Connector for WebSMS by Felix Bechstein.
 
 You will need websms-api [1] to compile this code.
 

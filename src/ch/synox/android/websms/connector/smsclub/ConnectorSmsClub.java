@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012
+ * Copyright (C) 2012 Synox
  *
  * This file is part of sms-club.ch Connector for WebSMS by Felix Bechstein.
  *
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/>.
  */
-package de.ub0r.android.websms.connector.smsbug;
+package ch.synox.android.websms.connector.smsclub;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -42,10 +42,10 @@ import de.ub0r.android.websms.connector.common.Utils.HttpOptions;
 import de.ub0r.android.websms.connector.common.WebSMSException;
 
 /**
- * AsyncTask to manage IO to smsbug.com API.
+ * AsyncTask to manage IO to sms-club.ch API.
  * 
  */
-public class ConnectorSmsBug extends Connector {
+public class ConnectorSmsClub extends Connector {
 	// see api doc:
 	// http://blog.sms-club.ch/wp-content/uploads/2009/06/sms-club_api_interface.pdf
 
@@ -55,7 +55,7 @@ public class ConnectorSmsBug extends Connector {
 	/** Tag for output. */
 	private static final String TAG = "sms-club.ch";
 
-	/** SmsBug Gateway URL. */
+	/** Gateway URL. */
 	private static final String URL_SEND = "https://www.sms-club.ch/api/send";
 
 	/**
@@ -63,10 +63,10 @@ public class ConnectorSmsBug extends Connector {
 	 */
 	@Override
 	public final ConnectorSpec initSpec(final Context context) {
-		final String name = context.getString(R.string.connector_smsbug_name);
+		final String name = context.getString(R.string.connector_smsclub_name);
 		ConnectorSpec c = new ConnectorSpec(name);
 		c.setAuthor(// .
-		context.getString(R.string.connector_smsbug_author));
+		context.getString(R.string.connector_smsclub_author));
 		c.setBalance(null);
 
 		// balance update without sending is currently not supported by the api,

@@ -17,13 +17,13 @@
 		not, see <http://www.gnu.org/licenses/>.
 	-->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	android:title="@string/settings_smsbug">
-	<CheckBoxPreference android:key="enable_smsbug"
-		android:title="@string/enable_smsbug" />
-	<EditTextPreference android:key="user_smsbug"
+	android:title="@string/settings_smsclub">
+	<CheckBoxPreference android:key="enable_smsclub"
+		android:title="@string/enable_smsclub" />
+	<EditTextPreference android:key="user_smsclub"
 		android:inputType="phone" android:title="@string/username_"
-		android:dialogTitle="@string/username_" android:dependency="enable_smsbug" />
-	<EditTextPreference android:key="password_smsbug"
+		android:dialogTitle="@string/username_" android:dependency="enable_smsclub" />
+	<EditTextPreference android:key="password_smsclub"
 		android:inputType="textPassword" android:title="@string/password_"
-		android:dialogTitle="@string/password_" android:dependency="enable_smsbug" />
+		android:dialogTitle="@string/password_" android:dependency="enable_smsclub" />
 </PreferenceScreen>

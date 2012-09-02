@@ -17,7 +17,7 @@
 		not, see <http://www.gnu.org/licenses/>.
 	-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="de.ub0r.android.websms.connector.smsbug" android:versionName="1.0"
+	package="ch.synox.android.websms.connector.smsclub" android:versionName="1.0"
 	android:versionCode="1000">
 	<application android:label="@string/app_name" android:icon="@drawable/icon"
 		android:debuggable="true">
@@ -42,15 +42,15 @@
 
 		<activity android:name="Preferences">
 			<intent-filter>
-				<action android:name="de.ub0r.android.websms.connector.smsbug.PREFS" />
+				<action android:name="ch.synox.android.websms.connector.smsclub.PREFS" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
-		<receiver android:name="de.ub0r.android.websms.connector.smsbug.ConnectorSmsBug"
-			android:enabled="true" android:exported="true">
+		<receiver android:name="ch.synox.android.websms.connector.smsclub.ConnectorSmsClub" 
+			android:enabled="true" android:exported="true">			
 			<intent-filter>
-				<action android:name="de.ub0r.android.websms.connector.smsbug.RUN_UPDATE" />
-				<action android:name="de.ub0r.android.websms.connector.smsbug.RUN_SEND" />
+				<action android:name="ch.synox.android.websms.connector.smsclub.RUN_UPDATE" />
+				<action android:name="ch.synox.android.websms.connector.smsclub.RUN_SEND" />
 				<action android:name="de.ub0r.android.websms.connector.UPDATE" />
 			</intent-filter>
 		</receiver>
