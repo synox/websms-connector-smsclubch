@@ -119,8 +119,6 @@ public class ConnectorSmsClub extends Connector {
 
 	private static void checkForErrors(final Context context, final String htmlText) {
 		if (htmlText.contains("<error")) {
-			Log.d(TAG, "response contains <error>");
-
 			// there was an error
 			Matcher m = PATTERN_ERR.matcher(htmlText);
 			if (m.find()) {
@@ -213,9 +211,9 @@ public class ConnectorSmsClub extends Connector {
 			 * /> </smsResponse>
 			 */
 			String htmlText = Utils.stream2str(response.getEntity().getContent()).trim();
-			Log.d(TAG, "--HTTP RESPONSE--");
-			Log.d(TAG, htmlText);
-			Log.d(TAG, "--HTTP RESPONSE--");
+			// Log.d(TAG, "--HTTP RESPONSE--");
+			// Log.d(TAG, htmlText);
+			// Log.d(TAG, "--HTTP RESPONSE--");
 
 			readBalance(cs, htmlText);
 			checkForErrors(context, htmlText);
