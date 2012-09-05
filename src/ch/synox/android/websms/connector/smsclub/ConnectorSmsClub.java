@@ -71,7 +71,8 @@ public class ConnectorSmsClub extends Connector {
 
 		// balance update without sending is currently not supported by the api,
 		// so it also not supported by the implementation.
-		c.setCapabilities(ConnectorSpec.CAPABILITIES_SEND | ConnectorSpec.CAPABILITIES_PREFS);
+		c.setCapabilities(ConnectorSpec.CAPABILITIES_SEND | ConnectorSpec.CAPABILITIES_PREFS
+				| ConnectorSpec.CAPABILITIES_UPDATE);
 		c.addSubConnector(TAG, name, SubConnectorSpec.FEATURE_MULTIRECIPIENTS);
 		return c;
 	}
@@ -150,7 +151,7 @@ public class ConnectorSmsClub extends Connector {
 	}
 
 	private static void readBalance(final ConnectorSpec cs, final String htmlText) {
-		// example: <smsResponse credit="20000">
+		// example: <smsResponse credit="580">
 		Matcher m = PATTERN_CREDIT.matcher(htmlText);
 		if (m.find()) {
 
@@ -191,15 +192,9 @@ public class ConnectorSmsClub extends Connector {
 					p.getString(Preferences.PREFS_PASSWORD, ""));
 			options.trustAll = true;
 
-			// send message
-			HttpResponse response = Utils.getHttpClient(options);
-
-			// evaluate response
-			int resp = response.getStatusLine().getStatusCode();
-			if (resp != HttpURLConnection.HTTP_OK) {
-				this.checkReturnCode(context, resp);
-				throw new WebSMSException(context, R.string.error_http, " " + resp);
-			}
+			String htmlText = this.doHttpRequest(context, options);
+			// for testing, comment out previous command.
+			// String htmlText = this.doFakeRequest(context, options);
 
 			/*
 			 * example response: <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -210,7 +205,7 @@ public class ConnectorSmsClub extends Connector {
 			 * "https://www.sms- club.ch/websms/sclub/statusxml.do?msgid=53911&msisdn=+41796481111"
 			 * /> </smsResponse>
 			 */
-			String htmlText = Utils.stream2str(response.getEntity().getContent()).trim();
+
 			// Log.d(TAG, "--HTTP RESPONSE--");
 			// Log.d(TAG, htmlText);
 			// Log.d(TAG, "--HTTP RESPONSE--");
@@ -225,11 +220,41 @@ public class ConnectorSmsClub extends Connector {
 		}
 	}
 
+	private String doFakeRequest(final Context context, final HttpOptions options) {
+		return "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"
+				+ "<!DOCTYPE smsResponse PUBLIC \"smsResponse\" \"http://messenger.handybutler.ch/dtd/smsResponse.dtd\">\n"
+				+ "<smsResponse credit=\"20000\"> <okay id=\"53911:41796481111\" notiflink=\"https://www.sms- club.ch/websms/sclub/statusxml.do?msgid=53911&msisdn=+41796481111\"/> </smsResponse>";
+
+	}
+
+	private String doHttpRequest(final Context context, final HttpOptions options)
+			throws IOException {
+		// send message
+		HttpResponse response = Utils.getHttpClient(options);
+
+		// evaluate response
+		int resp = response.getStatusLine().getStatusCode();
+		if (resp != HttpURLConnection.HTTP_OK) {
+			this.checkReturnCode(context, resp);
+			throw new WebSMSException(context, R.string.error_http, " " + resp);
+		}
+
+		String htmlText = Utils.stream2str(response.getEntity().getContent()).trim();
+		return htmlText;
+
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected final void doSend(final Context context, final Intent intent) {
 		this.sendData(context, new ConnectorCommand(intent));
+	}
+
+	@Override
+	protected void doUpdate(final Context context, final Intent intent) throws IOException {
+		// not implemented by the API, but still required for the balance to be
+		// updated. must be a bug in websms version 4.5
 	}
 }
