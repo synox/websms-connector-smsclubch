@@ -19,7 +19,7 @@
 <resources>
 	<string name="app_name">WebSMS Connector: sms-club.ch</string>
 	<string name="app_version">1.0</string>
-	<string name="connector_smsclub_author">Synox</string>
+	<string name="connector_smsclub_author">DubGo</string>
 	<string name="connector_smsclub_name">sms-club.ch</string>
 	<string name="enable_smsclub">Enable sms-club.ch</string>
 	<string name="settings_smsclub">Preferences - sms-club.ch</string>

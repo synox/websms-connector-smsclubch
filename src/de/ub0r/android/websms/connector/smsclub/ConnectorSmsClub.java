@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Synox
+ * Copyright (C) 2012
  *
  * This file is part of sms-club.ch Connector for WebSMS by Felix Bechstein.
  *
