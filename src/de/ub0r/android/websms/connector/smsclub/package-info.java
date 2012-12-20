@@ -20,5 +20,5 @@
 /**
  * WebSMS Connector: MeinBMW
  */
-package ch.synox.android.websms.connector.smsclub;
+package de.ub0r.android.websms.connector.smsclub;
 

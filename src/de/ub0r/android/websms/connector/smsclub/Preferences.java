@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/>.
  */
-package ch.synox.android.websms.connector.smsclub;
+package de.ub0r.android.websms.connector.smsclub;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
